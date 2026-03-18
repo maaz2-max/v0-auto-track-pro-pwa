@@ -340,6 +340,20 @@ export function SettingsPage() {
           </div>
         </div>
       )}
+
+      {/* Footer with logo and credit */}
+      <div className="mt-10 pt-6 border-t border-border flex flex-col items-center gap-3 pb-10">
+        <div className="w-16 h-16 rounded-2xl overflow-hidden">
+          <img src="/logo.png" alt="AutoTrackPro" className="w-full h-full object-cover" />
+        </div>
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground">Made with</p>
+          <div className="flex items-center justify-center gap-1">
+            <Heart size={14} className="text-red-500" />
+            <p className="text-xs font-medium text-foreground">by AutoTrackPro Team</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

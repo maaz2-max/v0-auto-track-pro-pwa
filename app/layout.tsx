@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   title: 'AutoTrackPro',
   description: 'Personal vehicle management — track fuel, service, and expenses for all your vehicles.',
   manifest: '/manifest.json',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/logo.png',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
