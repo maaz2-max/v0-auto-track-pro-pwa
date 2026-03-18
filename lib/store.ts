@@ -38,6 +38,16 @@ export interface ServiceLog {
   notes?: string
 }
 
+export interface ChargingLog {
+  id: string
+  vehicleId: string
+  date: string
+  amountSpent: number
+  chargingType?: 'home' | 'public'
+  odometer?: number
+  notes?: string
+}
+
 export interface UserProfile {
   dateOfBirth?: string
   licenseNumber?: string
@@ -76,6 +86,7 @@ export interface AppData {
   vehicles: Vehicle[]
   fuelLogs: FuelLog[]
   serviceLogs: ServiceLog[]
+  chargingLogs: ChargingLog[]
   reminders: Reminder[]
   documents: VehicleDocument[]
   pwaPromptShown?: boolean
@@ -92,6 +103,7 @@ function getDefaultData(): AppData {
     vehicles: [],
     fuelLogs: [],
     serviceLogs: [],
+    chargingLogs: [],
     reminders: [],
     documents: [],
     pwaPromptShown: false,
@@ -183,6 +195,13 @@ export function getReminderDaysUntil(reminder: Reminder): number {
   const due = new Date(reminder.dueDate).getTime()
   const now = Date.now()
   return Math.ceil((due - now) / (24 * 60 * 60 * 1000))
+}
+
+export function isReminderUpcoming(reminder: Reminder, days: number = 3): boolean {
+  if (reminder.isCompleted) return false
+  if (isReminderOverdue(reminder)) return false
+  const daysUntil = getReminderDaysUntil(reminder)
+  return daysUntil <= days && daysUntil >= 0
 }
 
 // Document helpers
